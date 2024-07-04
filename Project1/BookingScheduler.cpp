@@ -34,13 +34,11 @@ public:
             throw std::runtime_error("Number of people is over restaurant capacity per hour");
         }
 
-        /*
         // 일요일에는 시스템을 오픈하지 않는다.
-        time_t now = time(nullptr);
+        time_t now = getNow();
         if (getDayOfWeek(now) == "Sunday") {
             throw std::runtime_error("Booking system is not available on sunday");
         }
-        */
 
         schedules.push_back(schedule);
 
@@ -50,6 +48,11 @@ public:
         if (schedule->getCustomer().getEmail() != "") {
             mailSender->sendMail(schedule);
         }
+    }
+
+    virtual time_t getNow()
+    {
+        return time(nullptr);
     }
 
     bool hasSchedule(Schedule* schedule) {
