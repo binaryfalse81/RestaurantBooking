@@ -3,7 +3,7 @@
 
 class MailSender {
 public:
-	virtual void sendMail(Schedule *schedule) {
-		//send mail
-	}
+    virtual void sendMail(Schedule *schedule) {
+        //send mail
+    }
 };

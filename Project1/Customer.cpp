@@ -5,23 +5,23 @@ using std::string;
 
 class Customer {
 public:
-	Customer(string name, string phoneNumber) : 
-		name{ name }, 
-		phoneNumber{ phoneNumber } {
-	}
+    Customer(string name, string phoneNumber) : 
+        name{ name }, 
+        phoneNumber{ phoneNumber } {
+    }
 
-	Customer(string name, string phoneNumber, string email) :
-		name{ name }, 
-		phoneNumber{ phoneNumber }, 
-		email{ email } {
-	}
+    Customer(string name, string phoneNumber, string email) :
+        name{ name }, 
+        phoneNumber{ phoneNumber }, 
+        email{ email } {
+    }
 
-	string getEmail() {
-		return email;
-	}
+    virtual string getEmail() {
+        return email;
+    }
 
 private:
-	string name;
-	string phoneNumber;
-	string email;
+    string name;
+    string phoneNumber;
+    string email;
 };

@@ -6,26 +6,26 @@ using std::time_t;
 
 class Schedule {
 public:
-	Schedule(tm dateTime, int numberOfPeople, Customer customer) :
-		dateTime{ dateTime }, 
-		numberOfPeople{ numberOfPeople }, 
-		customer{ customer } {
-	}
+    Schedule(tm dateTime, int numberOfPeople, Customer &customer) :
+        dateTime{ dateTime }, 
+        numberOfPeople{ numberOfPeople }, 
+        customer{ customer } {
+    }
 
-	tm getDateTime() {
-		return dateTime;
-	}
+    tm getDateTime() {
+        return dateTime;
+    }
 
-	int getNumberOfPeople() {
-		return numberOfPeople;
-	}
+    int getNumberOfPeople() {
+        return numberOfPeople;
+    }
 
-	Customer getCustomer() {
-		return customer;
-	}
+    Customer &getCustomer() {
+        return customer;
+    }
 
 private:
-	tm dateTime;
-	int numberOfPeople;
-	Customer customer;
+    tm dateTime;
+    int numberOfPeople;
+    Customer &customer;
 };
