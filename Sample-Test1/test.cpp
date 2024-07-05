@@ -77,10 +77,10 @@ protected:
         bookingScheduler.setSmsSender(&testSmsSender);
         bookingScheduler.setMailSender(&testMailSender);
 
-        //EXPECT_CALL(CUSTOMER, getEmail, (), ())
-        //    .WillRepeatedly(Return(""));
-        //EXPECT_CALL(CUSTOMER_W_MAIL, getEmail, (), ())
-        //    .WillRepeatedly(Return("test@naver.com"));
+        EXPECT_CALL(CUSTOMER, getEmail, (), ())
+            .WillRepeatedly(Return(""));
+        EXPECT_CALL(CUSTOMER_W_MAIL, getEmail, (), ())
+            .WillRepeatedly(Return("test@naver.com"));
     }
 public:
     tm getTime(int y, int m, int d, int h, int min)
@@ -101,10 +101,10 @@ public:
     tm ON_THE_HOUR;
     tm SUNDAY_ON_THE_HOUR;
     tm MONDAY_ON_THE_HOUR;
-    //MockCustomer CUSTOMER;
-    //MockCustomer CUSTOMER_W_MAIL;
-    Customer CUSTOMER{ "Fake name", "010-1234-5678" };
-    Customer CUSTOMER_W_MAIL{ "Fake name", "010-1234-5678", "test@naver.com"};
+    MockCustomer CUSTOMER;
+    MockCustomer CUSTOMER_W_MAIL;
+    //Customer CUSTOMER{ "Fake name", "010-1234-5678" };
+    //Customer CUSTOMER_W_MAIL{ "Fake name", "010-1234-5678", "test@naver.com"};
     const int UNDER_CAPACITY = 1;
     const int CAPACITY_PER_HOUR = 3;
     BookingScheduler bookingScheduler{ CAPACITY_PER_HOUR };
@@ -115,9 +115,7 @@ public:
 TEST_F(BookingFixture, 예약은_정시에만_가능하다_정시가_아닌경우_예약불가) {
     Schedule* schedule = new Schedule{ NOT_ON_THE_HOUR, UNDER_CAPACITY, CUSTOMER };
 
-    EXPECT_THROW({
-        bookingScheduler.addSchedule(schedule);
-        }, std::runtime_error);
+    EXPECT_THROW({bookingScheduler.addSchedule(schedule);}, runtime_error);
 }
 
 TEST_F(BookingFixture, 예약은_정시에만_가능하다_정시인_경우_예약가능) {
